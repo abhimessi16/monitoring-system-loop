@@ -41,7 +41,7 @@ def get_store_timezone_str_cached(connection: sqlite3.Connection):
 def get_prev_status_only(connection: sqlite3.Connection, store_id: str, curr_hour: datetime) -> str:
 
     hour_status_columns = "status"
-    hour_status_conditions = "store_id='{store_id}' and timestamp_utc < DATETIME('{curr_hour}')"
+    hour_status_conditions = "store_id='{store_id}' and timestamp_utc < DATETIME('{curr_hour}') order by timestamp_utc desc limit 1"
 
     cursor = connection.cursor()
 
